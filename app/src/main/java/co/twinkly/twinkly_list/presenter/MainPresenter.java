@@ -12,7 +12,7 @@ public class MainPresenter implements Presenter<MainMvpView> {
 
     @Override
     public void attachView(MainMvpView view) {
-        this.mainMvpView = view;
+        mainMvpView = view;
     }
 
     @Override
