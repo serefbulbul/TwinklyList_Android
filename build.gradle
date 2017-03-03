@@ -7,13 +7,12 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
         classpath  'me.tatarka:gradle-retrolambda:3.2.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
-
-apply from: 'dependencies.gradle'
 
 allprojects {
     repositories {
@@ -23,4 +22,38 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    // Sdk and tools
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.1'
+    minSdkVersion = 16
+    targetSdkVersion = 25
+    versionCode = 1
+    versionName = '1.0'
+
+    // App dependencies
+    supportLibraryVersion = '25.1.1'
+    retrolambdaVersion = '2.4.0'
+    autoValueVersion = '1.2'
+    autoValueGsonVersion = '0.4.5'
+    autoValueParcelAdapterVersion = '0.2.5'
+    daggerVersion = '2.8'
+    picassoVersion = '2.5.2'
+    retrofit2Version = '2.1.0'
+    okhttpVersion = '3.5.0'
+    picassoOkhttpDownloaderVersion = '1.1.0'
+    gsonVersion = '2.8.0'
+    gsonJodatimeSerialersVersion = '1.5.0'
+    butterknifeVersion = '8.0.1'
+    rxJavaVersion = '1.2.5'
+    rxAndroidVersion = '1.2.1'
+    rxSaveStateVersion = '2.0.2'
+    rxBindingVersion = '1.0.0'
+    jodaVersion = '2.9.5.1'
+    timberVersion = '4.5.1'
+    truthVersion = '0.28'
+    mockitoVersion = '1.10.19'
+    junitVersion = '4.12'
 }

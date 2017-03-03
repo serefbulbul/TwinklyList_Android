@@ -9,12 +9,12 @@ public class MainPresenter implements MainContract.Presenter {
     private MainView mainView;
 
     @Override
-    public void onCreate() {
+    public void subscribe() {
 
     }
 
     @Override
-    public void onDestroy() {
+    public void unsubscribe() {
 
     }
 }

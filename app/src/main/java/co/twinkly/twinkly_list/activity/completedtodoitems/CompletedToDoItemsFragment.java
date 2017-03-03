@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import co.twinkly.twinkly_list.R;
-import co.twinkly.twinkly_list.activity.completedtodoitems.mvp.CompletedToDoItemsMvpView;
 import co.twinkly.twinkly_list.activity.base.BaseFragment;
 
 import static android.text.style.TtsSpan.ARG_TEXT;
@@ -17,7 +16,7 @@ import static android.text.style.TtsSpan.ARG_TEXT;
  * Created by serefbulbul on 14/02/2017.
  */
 
-public class CompletedToDoItemsFragment extends BaseFragment implements CompletedToDoItemsMvpView {
+public class CompletedToDoItemsFragment extends BaseFragment {
 
     private static final String TAB_INDEX = "TAB_INDEX";
 

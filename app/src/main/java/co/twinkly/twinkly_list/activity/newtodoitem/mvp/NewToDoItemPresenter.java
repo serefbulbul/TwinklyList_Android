@@ -1,20 +1,18 @@
 package co.twinkly.twinkly_list.activity.newtodoitem.mvp;
 
-import co.twinkly.twinkly_list.presenter.Presenter;
-
 /**
  * Created by serefbulbul on 14/02/2017.
  */
 
-public class NewToDoItemPresenter implements Presenter<NewToDoItemView> {
+public class NewToDoItemPresenter implements NewToDoItemContract.Presenter {
 
     @Override
-    public void attachView(NewToDoItemView view) {
+    public void subscribe() {
 
     }
 
     @Override
-    public void detachView() {
+    public void unsubscribe() {
 
     }
 }

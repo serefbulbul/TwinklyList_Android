@@ -8,13 +8,12 @@ import android.support.annotation.Nullable;
 import butterknife.ButterKnife;
 import co.twinkly.twinkly_list.R;
 import co.twinkly.twinkly_list.activity.base.BaseActivity;
-import co.twinkly.twinkly_list.activity.newtodoitem.mvp.NewToDoItemView;
 
 /**
  * Created by serefbulbul on 14/02/2017.
  */
 
-public class NewToDoItemActivity extends BaseActivity implements NewToDoItemView {
+public class NewToDoItemActivity extends BaseActivity {
 
     private static final String SELECTED_TAB_INDEX = "SELECTED_TAB_INDEX";
 
@@ -32,8 +31,4 @@ public class NewToDoItemActivity extends BaseActivity implements NewToDoItemView
 
     }
 
-    @Override
-    public Context getContext() {
-        return null;
-    }
 }

@@ -1,21 +1,34 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "co.twinkly.twinklylist_android"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
 
@@ -26,27 +39,62 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile supportDependencies.design
-    compile supportDependencies.appcompat
-    compile supportDependencies.cardview
-    compile supportDependencies.recyclerview
+    retrolambdaConfig "net.orfjackal.retrolambda:retrolambda:$rootProject.retrolambdaVersion"
 
-    compile squareDependencies.retrofit
-    compile squareDependencies.adapter_rx_java
-    compile squareDependencies.converter_gson
-    compile squareDependencies.picasso
+    //AutoValue
+    provided "com.google.auto.value:auto-value:$rootProject.autoValueVersion"
+    provided "com.ryanharter.auto.value:auto-value-gson:$rootProject.autoValueGsonVersion"
+    compile "com.ryanharter.auto.value:auto-value-parcel-adapter:$rootProject.autoValueParcelAdapterVersion"
+    apt "com.google.auto.value:auto-value:$rootProject.autoValueGsonVersion"
+    apt "com.ryanharter.auto.value:auto-value-gson:$rootProject.autoValueGsonVersion"
+    apt "com.ryanharter.auto.value:auto-value-parcel:$rootProject.autoValueParcelAdapterVersion"
 
-    compile reactiveDependencies.rxandroid
-    // Because RxAndroid releases are few and far between, it is recommended you also
-    // explicitly depend on RxJava's latest version for bug fixes and new features.
-    compile reactiveDependencies.rxjava
+    //Dagger 2
+    compile "com.google.dagger:dagger:$rootProject.daggerVersion"
+    apt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
 
-    compile otherDependencies.butterknife
-    compile otherDependencies.circleimageview
+    //Network
+    compile "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.retrofit2Version"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofit2Version"
+    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.retrofit2Version"
+    compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+    compile "com.jakewharton.picasso:picasso2-okhttp3-downloader:$rootProject.picassoOkhttpDownloaderVersion"
 
-    testCompile testingDependencies.junit
-    testCompile testingDependencies.mockito
-    testCompile testingDependencies.robolectric
+    //Gson
+    compile "com.google.code.gson:gson:$rootProject.gsonVersion"
+    compile ("com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:$rootProject.gsonJodatimeSerialersVersion") {
+        exclude group: "joda-time", module: "joda-time"
+    }
+
+    //Butterknife
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    //rx java
+    compile "io.reactivex:rxjava:$rootProject.rxJavaVersion"
+    compile "io.reactivex:rxandroid:$rootProject.rxAndroidVersion"
+    compile "com.twistedequations.rx:rx-savestate:$rootProject.rxSaveStateVersion"
+    compile "com.jakewharton.rxbinding:rxbinding:$rootProject.rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-support-v4:$rootProject.rxBindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7:$rootProject.rxBindingVersion"
+
+    //Android
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+
+    //Joda time
+    compile "net.danlew:android.joda:$rootProject.jodaVersion"
+
+    //debugging
+    compile "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    //Testing
+    testCompile "com.google.truth:truth:$rootProject.truthVersion"
+    testCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testCompile "junit:junit:$rootProject.junitVersion"
 }
