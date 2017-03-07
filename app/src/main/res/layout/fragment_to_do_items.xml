@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_view_to_do_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#00FFFF"

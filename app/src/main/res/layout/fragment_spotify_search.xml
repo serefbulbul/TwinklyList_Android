@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_view_spotify_search"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="test deneme"/>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edit_text_spotify_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_spotify_search"
+        android:layout_width="match_parent"
+        android:background="#cccccc"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

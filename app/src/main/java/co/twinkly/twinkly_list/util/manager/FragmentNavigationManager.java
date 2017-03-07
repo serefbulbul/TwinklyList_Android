@@ -56,7 +56,7 @@ public class FragmentNavigationManager{
         }
     }
 
-    public FragmentChangeListener getmFragmentChangeListener() {
+    public FragmentChangeListener getFragmentChangeListener() {
         return mFragmentChangeListener;
     }
 

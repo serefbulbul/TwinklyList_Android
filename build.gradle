@@ -47,7 +47,7 @@ ext {
     gsonVersion = '2.8.0'
     gsonJodatimeSerialersVersion = '1.5.0'
     butterknifeVersion = '8.0.1'
-    rxJavaVersion = '1.2.5'
+    rxJava2Version = '2.0.6'
     rxAndroidVersion = '1.2.1'
     rxSaveStateVersion = '2.0.2'
     rxBindingVersion = '1.0.0'

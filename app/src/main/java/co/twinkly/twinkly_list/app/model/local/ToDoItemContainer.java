@@ -3,6 +3,8 @@ package co.twinkly.twinkly_list.app.model.local;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.twinkly.twinkly_list.app.model.remote.ToDoItem;
+
 /**
  * Created by serefbulbul on 14/02/2017.
  */

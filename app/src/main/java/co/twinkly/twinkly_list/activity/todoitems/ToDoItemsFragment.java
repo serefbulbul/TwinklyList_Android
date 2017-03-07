@@ -6,9 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.ButterKnife;
+import javax.inject.Inject;
+
 import co.twinkly.twinkly_list.R;
 import co.twinkly.twinkly_list.activity.base.BaseFragment;
+import co.twinkly.twinkly_list.activity.todoitems.dagger.DaggerToDoItemsComponent;
+import co.twinkly.twinkly_list.activity.todoitems.dagger.ToDoItemsModule;
+import co.twinkly.twinkly_list.activity.todoitems.mvp.ToDoItemsPresenter;
+import co.twinkly.twinkly_list.activity.todoitems.mvp.ToDoItemsView;
 
 import static android.text.style.TtsSpan.ARG_TEXT;
 
@@ -19,6 +24,12 @@ import static android.text.style.TtsSpan.ARG_TEXT;
 public class ToDoItemsFragment extends BaseFragment {
 
     private static final String TAB_INDEX = "TAB_INDEX";
+
+    @Inject
+    ToDoItemsView view;
+
+    @Inject
+    ToDoItemsPresenter presenter;
 
     private String mText;
 
@@ -33,8 +44,12 @@ public class ToDoItemsFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_to_do_list, container, false);
-        ButterKnife.bind(this, view);
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_to_do_items, container, false);
+
+        DaggerToDoItemsComponent.builder()
+                .toDoItemsModule(new ToDoItemsModule(this, view))
+                .build().inject(this);
 
         return view;
     }
@@ -51,4 +66,17 @@ public class ToDoItemsFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        presenter.unsubscribe();
+    }
 }
