@@ -1,9 +1,7 @@
 package co.twinkly.twinkly_list.app.network;
 
-import java.util.List;
-
 import co.twinkly.twinkly_list.app.model.remote.ArtistsSearch;
-import co.twinkly.twinkly_list.app.model.remote.Track;
+import co.twinkly.twinkly_list.app.model.remote.Tracks;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -19,6 +17,6 @@ public interface SpotifyNetwork {
     Observable<ArtistsSearch> searchArtist(@Query("q") String artist);
 
     @GET("v1/artists/{artistId}/top-tracks?country=TR")
-    Observable<List<Track>> getTracksForArtist(@Path("artistId") String artistId);
+    Observable<Tracks> getTracksForArtist(@Path("artistId") String artistId);
 
 }
